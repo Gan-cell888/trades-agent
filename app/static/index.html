@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeS Agent · 外贸客户资料清洗整理</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="icon" href="/static/favicon.png" />
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+  <!-- Nav -->
+  <header class="site-header">
+    <div class="nav">
+      <a class="brand" href="#home" data-view="home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 64 64" width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="logo-a" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1a6cf0"/><stop offset="0.55" stop-color="#0d8df0"/><stop offset="1" stop-color="#22c6f5"/>
+              </linearGradient>
+              <linearGradient id="logo-b" x1="18" y1="18" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#9fd4ff"/><stop offset="1" stop-color="#ffffff"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 4l22 12.5v23L32 60 10 39.5v-23L32 4z" fill="url(#logo-a)"/>
+            <path d="M32 8.5l18 10.2v19.6L32 55.5 14 38.3V18.7L32 8.5z" fill="#0b1b33" opacity="0.32"/>
+            <circle cx="32" cy="32" r="16.5" stroke="#c7e6ff" stroke-width="1.1" opacity="0.55" stroke-dasharray="4 3"/>
+            <path d="M20 22h24v5.2H34.6V44h-5.2V27.2H20V22z" fill="url(#logo-b)"/>
+            <circle cx="32" cy="8.5" r="2.1" fill="#fff"/>
+            <circle cx="50" cy="45.2" r="1.9" fill="#8fd6ff"/>
+            <circle cx="14" cy="45.2" r="1.9" fill="#8fd6ff"/>
+            <path d="M32 32v-8M32 32l7 4M32 32l-7 4" stroke="#b7e2ff" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+          </svg>
+        </span>
+        <span class="brand-name">TradeS Agent</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#home" data-view="home" class="nav-link is-active">首页</a>
+        <a href="#workspace" data-view="workspace" class="nav-link">清洗</a>
+        <a href="#qa" data-view="qa" class="nav-link">问答</a>
+        <button type="button" class="nav-link nav-btn" id="btn-llm-settings">设置</button>
+        <button type="button" class="nav-link nav-btn" id="btn-theme" title="切换明亮/深色">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span id="theme-label">主题</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HOME ========== -->
+  <main id="view-home" class="view">
+    <section class="hero">
+      <div class="hero-ambient">
+        <div class="hero-glow"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="wrap hero-wrap">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="dot"></span>
+            线索工厂 + 演示参谋 · 本地运行
+          </div>
+          <h1>把数据给 Agent，<br />把时间留给签单</h1>
+          <p class="lead">
+            TradeS Agent 面向外贸软件 ToB 销售：多渠道客户资料清洗、字段映射、去重分表、质量质检。
+            一句话下达指令，自动规划并完成清洗，导出公司模板，导入外呼 CRM。
+          </p>
+          <div class="cta-row">
+            <button class="btn-primary" id="btn-enter-workspace" type="button">进入清洗</button>
+            <a class="btn-ghost" href="#features">了解能力</a>
+          </div>
+          <div class="hero-meta">
+            <div><strong>70%+</strong><span>清洗提速</span></div>
+            <div><strong>本地</strong><span>数据不出机</span></div>
+            <div><strong>Agent</strong><span>指令自动执行</span></div>
+          </div>
+        </div>
+
+        <div class="hero-shot" aria-hidden="true">
+          <div class="shot-window">
+            <div class="shot-bar">
+              <span></span><span></span><span></span>
+              <em>TradeS Agent · workspace</em>
+            </div>
+            <div class="shot-body">
+              <div class="shot-side">
+                <div class="shot-side-item active"></div>
+                <div class="shot-side-item"></div>
+                <div class="shot-side-item"></div>
+              </div>
+              <div class="shot-main">
+                <div class="shot-chip-row">
+                  <span class="shot-chip">Agent 执行轨迹</span>
+                  <span class="shot-chip dim">7 步完成</span>
+                </div>
+                <div class="shot-steps">
+                  <div class="shot-step"><b>1</b> 理解指令并生成计划</div>
+                  <div class="shot-step"><b>2</b> 字段映射 ← 8 列</div>
+                  <div class="shot-step"><b>3</b> 去掉号码前缀 · 去重 3 条</div>
+                  <div class="shot-step ok"><b>4</b> 中英分表 · 可导出</div>
+                </div>
+                <div class="shot-stats">
+                  <div><b>8</b><span>保留</span></div>
+                  <div><b>3</b><span>去重</span></div>
+                  <div><b>93</b><span>质量分</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow-text">CAPABILITIES</p>
+          <h2>为外贸销售日常清洗而设计</h2>
+          <p class="section-desc">覆盖数据质检、提取、电话处理、去重分表、关键词收敛等高频清洗场景。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⌘</div>
+            <h3>Agent 一句话清洗</h3>
+            <p>「提取公司联系人手机，去掉号码前缀，去重，按中英文分开」——自动规划、调用工具、自检后导出。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">☎</div>
+            <h3>电话智能规整</h3>
+            <p>去掉号码前缀，只保留手机号，多余号码移入固定电话列，格式统一可直接外呼。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⧉</div>
+            <h3>去重与多分表</h3>
+            <p>手机/官网/公司名三级去重；中文名、英文名、其他名称分表；按条数或手机号数量拆表。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">◎</div>
+            <h3>质量简报</h3>
+            <p>缺字段、无效号码、重复项、多关键词一眼可见，质量分辅助判断这批线索值不值得打。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">✦</div>
+            <h3>可选大模型</h3>
+            <p>接入 DeepSeek / GPT / 通义 / Ollama 等自定义模型，用于指令理解与结果复盘，不配也能跑。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">▣</div>
+            <h3>公司模板导出</h3>
+            <p>按公司字段规范输出 Excel，电话存为文本，直接导入外呼 CRM。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow-text">WORKFLOW</p>
+          <h2>三步完成一批线索</h2>
+        </div>
+        <div class="steps-row">
+          <div class="step-card">
+            <span class="step-num">01</span>
+            <h3>上传原始表</h3>
+            <p>中国制造、阿里巴巴、企查查等渠道 Excel / CSV，或粘贴表格文本。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">02</span>
+            <h3>给 Agent 下指令</h3>
+            <p>用自然语言描述清洗要求，查看执行轨迹与质检结果。</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">03</span>
+            <h3>导出模板</h3>
+            <p>一键导出公司模板 Excel（可多分表），导入外呼 CRM 开始拨打。</p>
+          </div>
+        </div>
+        <div class="center-cta">
+          <button class="btn-primary" id="btn-enter-workspace-2" type="button">开始清洗</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div>
+          <strong>TradeS Agent</strong>
+          <span>外贸客户资料清洗整理 · 本地工作台</span>
+        </div>
+        <p>本地运行 · 数据不出本机</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ========== QA ========== -->
+  <main id="view-qa" class="view hidden">
+    <div class="qa-shell">
+      <aside class="qa-side">
+        <div class="qa-side-head">
+          <div class="qa-logo">
+            <div class="qa-logo-mark">
+              <svg viewBox="0 0 64 64" width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <defs>
+                  <linearGradient id="qa-logo-a" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#1a6cf0"/><stop offset="0.55" stop-color="#0d8df0"/><stop offset="1" stop-color="#22c6f5"/>
+                  </linearGradient>
+                  <linearGradient id="qa-logo-b" x1="18" y1="18" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#9fd4ff"/><stop offset="1" stop-color="#ffffff"/>
+                  </linearGradient>
+                </defs>
+                <path d="M32 4l22 12.5v23L32 60 10 39.5v-23L32 4z" fill="url(#qa-logo-a)"/>
+                <path d="M32 8.5l18 10.2v19.6L32 55.5 14 38.3V18.7L32 8.5z" fill="#0b1b33" opacity="0.32"/>
+                <circle cx="32" cy="32" r="16.5" stroke="#c7e6ff" stroke-width="1.1" opacity="0.55" stroke-dasharray="4 3"/>
+                <path d="M20 22h24v5.2H34.6V44h-5.2V27.2H20V22z" fill="url(#qa-logo-b)"/>
+                <circle cx="32" cy="8.5" r="2.1" fill="#fff"/>
+                <path d="M32 32v-8M32 32l7 4M32 32l-7 4" stroke="#b7e2ff" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+              </svg>
+            </div>
+            <div>
+              <strong>智能问答</strong>
+              <span>TradeS Agent</span>
+            </div>
+          </div>
+          <button type="button" class="btn-primary btn-sm" id="btn-qa-new">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            新对话
+          </button>
+        </div>
+
+        <div class="qa-side-section">
+          <div class="qa-side-title">
+            <h3>历史对话</h3>
+            <button type="button" class="icon-btn" id="btn-qa-clear-history" title="清空历史">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V5h6v2M7 7l1 12h8l1-12"/></svg>
+            </button>
+          </div>
+          <ul class="qa-history" id="qa-history"></ul>
+        </div>
+      </aside>
+
+      <section class="qa-main">
+        <header class="qa-top">
+          <div class="qa-top-left">
+            <span class="qa-role-name">智能问答</span>
+            <span class="qa-role-desc">清洗规则 · 联网检索 · 附件分析</span>
+          </div>
+          <div class="qa-top-right">
+            <button type="button" class="btn-ghost btn-sm" id="btn-qa-export">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+              导出
+            </button>
+          </div>
+        </header>
+
+        <div class="qa-messages" id="qa-messages">
+          <div class="qa-welcome" id="qa-welcome">
+            <div class="qa-welcome-icon">✦</div>
+            <h2>欢迎使用 TradeS Agent 问答</h2>
+            <p>外贸线索清洗 · 某公司模板 · 操作指导</p>
+            <div class="qa-feature-cards">
+              <div class="qa-feature-card"><b>清洗规则</b><span>手机号 / 去重 / 分表</span></div>
+              <div class="qa-feature-card"><b>字段映射</b><span>某公司 18 列导入</span></div>
+              <div class="qa-feature-card"><b>多轮对话</b><span>上下文连续问答</span></div>
+            </div>
+            <p class="hint">支持粘贴/上传文本附件 · 流式回答 · 可切换浅色主题</p>
+          </div>
+        </div>
+
+        <form class="qa-input-area" id="qa-form">
+          <div class="qa-file-row hidden" id="qa-file-row"></div>
+          <div class="qa-input-box">
+            <button type="button" class="icon-btn" id="btn-qa-attach" title="添加附件">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.5l-8.5 8.5a5 5 0 01-7-7l9-9a3.5 3.5 0 015 5l-9 9a2 2 0 01-3-3l8-8"/></svg>
+            </button>
+            <button type="button" class="icon-btn" id="btn-qa-web" title="联网搜索">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 3 2.5 15 0 18"/><path d="M12 3c-2.5 3-2.5 15 0 18"/></svg>
+            </button>
+            <textarea id="qa-input" rows="1" placeholder="输入您的问题…（Enter 发送，Shift+Enter 换行）"></textarea>
+            <button class="btn-primary btn-send" type="submit" title="发送">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+          <div class="qa-input-hint">
+            <label class="check"><input type="checkbox" id="qa-web-search" /> 联网搜索</label>
+            · 支持附件 · 流式回答
+          </div>
+          <input type="file" id="qa-file-input" multiple accept=".txt,.csv,.md,.json,.log,.py,.js,.html,.css" hidden />
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- ========== WORKSPACE ========== -->
+  <main id="view-workspace" class="view hidden">
+    <div class="wrap workspace">
+      <div class="ws-head">
+        <div>
+          <h1>清洗工作台</h1>
+          <p class="muted">上传表格 → Agent 指令 / 手动规则 → 导出模板</p>
+        </div>
+      </div>
+
+      <section class="steps">
+        <div class="step active" data-step="1"><b>1</b> 上传原始表</div>
+        <div class="step" data-step="2"><b>2</b> Agent / 映射</div>
+        <div class="step" data-step="3"><b>3</b> 执行与质检</div>
+        <div class="step" data-step="4"><b>4</b> 导出模板</div>
+      </section>
+
+      <!-- 1 上传 -->
+      <section class="card" id="panel-upload">
+        <div class="card-head">
+          <h2>上传原始表格</h2>
+          <p>支持 Excel / CSV。可一次上传主表；若要对比两份公司数据，可再传「表格 B」。</p>
+        </div>
+        <div id="drop" class="drop">
+          <input type="file" id="file" accept=".xlsx,.xls,.csv,.xlsm" multiple hidden />
+          <div class="drop-inner">
+            <div class="drop-icon">↑</div>
+            <p><strong>点击选择</strong>或拖拽表格到此处（可多选合并）</p>
+            <p class="muted">xlsx / xls / csv · 广交会 / 中国制造 / 阿里巴巴</p>
+          </div>
+        </div>
+
+        <div class="sub-upload">
+          <h3>导入规则 · 武汉某公司模板</h3>
+          <p class="muted" style="margin:0">手机号 1 开头 11 位 · 去掉号码前缀/座机/国际号 · 多号写入常用/备用1/备用2 · 按公司名去重 · 无手机删除</p>
+        </div>
+
+        <div class="or-line"><span>或粘贴表格文本</span></div>
+        <textarea id="paste" rows="4" placeholder="可直接从 Excel 复制粘贴，含表头"></textarea>
+        <div class="row gap">
+          <button class="btn-ghost" id="btn-paste">解析粘贴内容</button>
+        </div>
+        <div class="alert hidden" id="upload-error"></div>
+      </section>
+
+      <!-- Agent -->
+      <section class="card hidden" id="panel-agent">
+        <div class="card-head">
+          <h2>清洗 Agent</h2>
+          <p>用一句话说明要怎么洗数据。Agent 会自动规划、调用工具并自检。</p>
+        </div>
+
+        <div class="agent-box">
+          <textarea id="agent-instruction" rows="4" placeholder="例如：帮我处理这个表格：提取公司名称、联系人、手机号码；去掉号码前缀，只保留手机号；去重；按中文/英文公司名称分成两个表格。"></textarea>
+          <div class="chips" id="agent-examples">
+            <button type="button" class="chip chip-btn" data-text="帮我处理这个表格：提取公司名称、联系人、手机号码，去掉号码前缀，只保留手机号，去掉座机，进行去重，按中文/英文公司名称分成两个表格">组合指令</button>
+            <button type="button" class="chip chip-btn" data-text="分析一下这个表格数据质量怎么样">数据质量</button>
+            <button type="button" class="chip chip-btn" data-text="把电话号码处理一下：去掉号码前缀，只保留手机号码（去掉座机），常用电话列只保留一个电话，多余电话移到固定电话列">电话处理</button>
+            <button type="button" class="chip chip-btn" data-text="提取公司名称、联系人、手机号码、链接，整理成表格">字段提取</button>
+            <button type="button" class="chip chip-btn" data-text="去重后按中文名称和英文名称分别整理成两个表格，再按手机号数量分成单个手机号和多个手机号两份">去重分表</button>
+            <button type="button" class="chip chip-btn" data-text="把关键词列筛选一下，多个关键词只保留一个">关键词清洗</button>
+            <button type="button" class="chip chip-btn" data-text="把大表格拆分成多个小表格，每个表格约100条数据">按条数拆表</button>
+          </div>
+          <div class="row gap">
+            <label class="check"><input type="checkbox" id="agent-use-llm" checked /> 用大模型理解指令</label>
+            <button class="btn-primary" id="btn-agent-run">交给 Agent 执行</button>
+            <button class="btn-ghost" id="btn-agent-manual">改用手动模式</button>
+          </div>
+        </div>
+
+        <div class="alert hidden" id="agent-error"></div>
+        <div class="alert ok hidden" id="agent-understand"></div>
+
+        <h3 class="block-title">执行轨迹</h3>
+        <ol class="agent-steps" id="agent-steps"></ol>
+      </section>
+
+      <!-- 手动 -->
+      <section class="card hidden" id="panel-map">
+        <div class="card-head">
+          <h2>手动模式 · 字段映射与清洗项</h2>
+          <p>适合精细控制。也可直接用「清洗 Agent」一句话跑完。</p>
+        </div>
+        <div class="meta-row">
+          <div>文件：<strong id="file-name">—</strong></div>
+          <div>行数：<strong id="file-rows">—</strong></div>
+          <div>识别来源：
+            <select id="source">
+              <option>阿里巴巴</option>
+              <option>中国制造</option>
+              <option>企查查</option>
+              <option>其他</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 class="block-title">字段映射</h3>
+        <div class="map-grid" id="map-grid"></div>
+
+        <h3 class="block-title">清洗选项（某公司规则已默认）</h3>
+        <div class="opt-grid" id="opt-grid">
+          <label class="check"><input type="checkbox" checked disabled /> 手机号 1 开头 11 位</label>
+          <label class="check"><input type="checkbox" checked disabled /> 去掉号码前缀</label>
+          <label class="check"><input type="checkbox" checked disabled /> 去掉座机与国际号</label>
+          <label class="check"><input type="checkbox" checked disabled /> 多号写入常用/备用1/备用2</label>
+          <label class="check"><input type="checkbox" checked disabled /> 按公司名称去重</label>
+          <label class="check"><input type="checkbox" checked disabled /> 删除无手机号记录</label>
+          <label class="check">分表行数
+            <input type="number" id="opt-chunk" min="0" step="500" value="1500" />
+          </label>
+        </div>
+
+        <div class="card-sub">
+          <h3>源表预览</h3>
+          <div class="table-wrap"><table id="sample-table"></table></div>
+        </div>
+        <div class="row gap">
+          <button class="btn-ghost" id="btn-back-upload">上一步</button>
+          <button class="btn-primary" id="btn-clean">执行清洗</button>
+        </div>
+      </section>
+
+      <!-- 结果 -->
+      <section class="card hidden" id="panel-result">
+        <div class="card-head">
+          <h2>质检与清洗结果</h2>
+          <p>确认后可导出公司模板 Excel。</p>
+        </div>
+
+        <h3 class="block-title">数据质量简报</h3>
+        <div class="quality" id="quality"></div>
+
+        <h3 class="block-title">清洗统计</h3>
+        <div class="stats" id="stats"></div>
+
+        <div class="card-sub">
+          <h3>清洗后预览</h3>
+          <div class="table-wrap"><table id="result-table"></table></div>
+        </div>
+
+        <div class="card-sub">
+          <h3>大模型清洗验证</h3>
+          <div class="row gap">
+            <button class="btn-ghost" id="btn-llm-validate">运行 AI 校验</button>
+            <button class="btn-ghost" id="btn-llm-settings-2">模型设置</button>
+            <span class="muted" id="llm-status">未配置时仍可使用规则清洗</span>
+          </div>
+          <div class="alert ok hidden" id="ai-result"></div>
+          <div class="table-wrap hidden" id="ai-table-wrap">
+            <table id="ai-table"></table>
+          </div>
+        </div>
+
+        <div class="card-sub">
+          <h3>将导出的分表</h3>
+          <div class="chips" id="sheet-chips"></div>
+        </div>
+
+        <div class="row gap">
+          <button class="btn-ghost" id="btn-back-map">返回改选项</button>
+          <label class="check"><input type="radio" name="scope" value="all" checked /> 全部</label>
+          <label class="check"><input type="radio" name="scope" value="valid" /> 仅可拨打</label>
+          <label class="check"><input type="radio" name="scope" value="todo" /> 仅待修正</label>
+          <button class="btn-primary" id="btn-export">导出清洗结果 Excel</button>
+        </div>
+        <div class="alert ok hidden" id="export-info"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- LLM modal · 供应商式配置 -->
+  <div class="modal hidden" id="panel-llm">
+    <div class="modal-card llm-card">
+      <div class="card-head">
+        <h2>大模型设置</h2>
+        <p>自定义模型使用你自己的密钥：填入各家的 API Key 即可在聊天里选用，仅保存到本地引擎配置。</p>
+      </div>
+
+      <div class="llm-toolbar">
+        <button type="button" class="icon-btn" id="btn-llm-refresh" title="刷新">⟳</button>
+        <button type="button" class="btn-ghost" id="btn-llm-new">＋ 添加供应商</button>
+        <div class="llm-current-pill" id="llm-current-pill">未选择</div>
+      </div>
+
+      <div class="llm-vendors" id="llm-vendors"></div>
+
+      <div class="llm-form">
+        <div class="llm-row">
+          <label>供应商 ID</label>
+          <input id="llm-id" type="text" placeholder="my-provider" />
+        </div>
+        <div class="llm-row">
+          <label>名称</label>
+          <input id="llm-label" type="text" placeholder="my-provider" />
+        </div>
+        <div class="llm-row">
+          <label>接口地址</label>
+          <input id="llm-base" type="text" placeholder="https://api.example.com/v1" />
+        </div>
+        <div class="llm-row">
+          <label>接口协议</label>
+          <select id="llm-path">
+            <option value="/chat/completions">/chat/completions（OpenAI 兼容格式）</option>
+            <option value="/v1/chat/completions">/v1/chat/completions</option>
+            <option value="/chat">/chat</option>
+          </select>
+        </div>
+        <div class="llm-row">
+          <label>模型名</label>
+          <input id="llm-model" type="text" placeholder="deepseek-chat" />
+        </div>
+        <div class="llm-row">
+          <label>API Key</label>
+          <div class="key-wrap">
+            <input id="llm-key" type="password" placeholder="API Key" />
+            <button type="button" class="key-eye" id="btn-llm-eye" title="显示/隐藏">👁</button>
+          </div>
+        </div>
+
+        <div class="llm-row llm-test-row">
+          <label>连接测试</label>
+          <div class="llm-test-side">
+            <span class="llm-status-dot" id="llm-status-dot"></span>
+            <button type="button" class="btn-ghost" id="btn-llm-test">测试连接</button>
+          </div>
+        </div>
+
+        <details class="llm-more">
+          <summary>高级选项</summary>
+          <div class="map-grid" style="margin-top:12px">
+            <div class="map-item">
+              <div class="label">鉴权</div>
+              <select id="llm-style">
+                <option value="openai">Bearer</option>
+                <option value="openai_no_auth">免鉴权</option>
+              </select>
+            </div>
+            <div class="map-item">
+              <div class="label">超时（秒）</div>
+              <input id="llm-timeout" type="number" min="10" max="180" value="60" />
+            </div>
+            <div class="map-item">
+              <div class="label">temperature</div>
+              <input id="llm-temp" type="number" min="0" max="2" step="0.1" value="0.1" />
+            </div>
+          </div>
+        </details>
+
+        <div class="row gap">
+          <button class="btn-primary" id="btn-llm-save">保存</button>
+          <button class="btn-ghost" id="btn-llm-delete">删除供应商</button>
+          <button class="btn-ghost" id="btn-llm-close">关闭</button>
+        </div>
+        <div class="alert ok hidden" id="llm-msg"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

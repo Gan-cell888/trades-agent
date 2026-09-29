@@ -1,0 +1,6 @@
+# 本地密钥与临时文件
+llm_config.json
+qa_sessions.json
+_test_export.xlsx
+__pycache__/
+*.pyc

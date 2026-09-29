@@ -1,0 +1,1102 @@
+<!-- AI生成 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeS Agent 产品完整说明 · 外贸客户资料清洗整理</title>
+  <link rel="stylesheet" href="agent-a.css" />
+</head>
+<body>
+<p data-aigc-mark="1" style="margin:0 0 8px;font-size:10px;line-height:1.3;color:#6b6560;font-weight:400;">AI生成</p>
+
+  <aside class="side-nav">
+    <div class="brand">
+      <span class="brand-mark">A</span>
+      <div>
+        <strong>TradeS Agent</strong>
+        <small>产品完整说明书</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#define">产品定义</a>
+      <a href="#users">用户与角色</a>
+      <a href="#scenes">业务场景</a>
+      <a href="#module-1">功能一 · 数据清洗</a>
+      <a href="#module-2">功能二 · 演示分析</a>
+      <a href="#flows">用户流程</a>
+      <a href="#pages">页面结构</a>
+      <a href="#data">数据模型</a>
+      <a href="#rules">业务规则</a>
+      <a href="#integration">系统集成</a>
+      <a href="#metrics">指标与验收</a>
+      <a href="#tech">技术方案</a>
+      <a href="#plan">版本规划</a>
+      <a href="#risks">风险与对策</a>
+    </nav>
+    <div class="side-meta">DOC v1.0 · TradeS Agent</div>
+  </aside>
+
+  <main class="content">
+    <header class="hero">
+      <div class="hero-tags">
+        <span class="pill pill-a">AGENT A</span>
+        <span class="pill">B2B SaaS 工作台</span>
+        <span class="pill">MVP 文档</span>
+      </div>
+      <h1>TradeS Agent<br />外贸客户资料清洗整理 · 产品完整说明</h1>
+      <p class="lead">
+        服务对象是<strong>外贸软件公司的 ToB 销售人员</strong>。
+        产品把「多渠道客户资料 → 标准化清洗 → 外呼 CRM 拨打 → 腾讯会远程演示 → 跟进签单」
+        这条每日重复的工作链路自动化、智能化，目标是<strong>提高有效接通、演示预约与成交转化</strong>。
+      </p>
+      <div class="hero-meta">
+        <div><span>产品代号</span><strong>TradeS Agent</strong></div>
+        <div><span>一句话定位</span><strong>线索工厂 + 演示参谋</strong></div>
+        <div><span>交付形态</span><strong>Web 工作台 + CRM 协同</strong></div>
+        <div><span>优先级</span><strong>P0 · 先于 Agent B</strong></div>
+      </div>
+    </header>
+
+    <!-- 1 产品定义 -->
+    <section class="section" id="define">
+      <div class="section-head">
+        <p class="eyebrow">01 · PRODUCT DEFINITION</p>
+        <h2>产品定义</h2>
+      </div>
+
+      <div class="def-grid">
+        <article class="def-card">
+          <h3>产品名称</h3>
+          <p>TradeS Agent · 贸清 Agent<br /><span class="en">外贸客户资料清洗整理 Agent</span></p>
+        </article>
+        <article class="def-card">
+          <h3>产品口号</h3>
+          <p>让销售把时间花在签单上，<br />而不是整理表格和搜资料。</p>
+        </article>
+        <article class="def-card">
+          <h3>核心价值</h3>
+          <p>清洗提速 70%+<br />演示准备从 30 分钟 → 3 分钟</p>
+        </article>
+      </div>
+
+      <div class="problem-list">
+        <h3>要解决的问题</h3>
+        <div class="problem-grid">
+          <div>
+            <span class="p-no">P1</span>
+            <h4>原始数据杂乱</h4>
+            <p>中国制造、阿里巴巴、企查查等多渠道资料格式不一，空号、重复、字段缺失严重，人工清洗耗时且易漏。</p>
+          </div>
+          <div>
+            <span class="p-no">P2</span>
+            <h4>模板填报重</h4>
+            <p>公司表格模板字段多，销售每天重复复制粘贴，导入外呼 CRM 前还要再校验一遍。</p>
+          </div>
+          <div>
+            <span class="p-no">P3</span>
+            <h4>演示准备慢</h4>
+            <p>官网、B2B 店铺、海外社媒信息分散，销售靠记忆和碎片搜索，演示缺乏针对性。</p>
+          </div>
+          <div>
+            <span class="p-no">P4</span>
+            <h4>行业差异大</h4>
+            <p>不同行业/产品线的痛点和开发方式不同，新手销售难快速找到演示侧重点。</p>
+          </div>
+          <div>
+            <span class="p-no">P5</span>
+            <h4>跟进易断档</h4>
+            <p>通话、演示、异议、承诺事项散落在聊天和记事本里，丢单原因无法复盘。</p>
+          </div>
+          <div>
+            <span class="p-no">P6</span>
+            <h4>经验难复制</h4>
+            <p>Top Sales 的话术与案例沉淀不下来，团队培训成本高。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scope-box">
+        <div>
+          <h4>产品做什么</h4>
+          <ul>
+            <li>多源线索导入、清洗、模板导出、写入外呼 CRM</li>
+            <li>演示前自动企调，输出演示简报与侧重点建议</li>
+            <li>线索评分、通话/演示/跟进任务管理</li>
+            <li>话术与案例辅助，结果回收看板</li>
+          </ul>
+        </div>
+        <div>
+          <h4>产品不做什么（MVP 边界）</h4>
+          <ul>
+            <li>不做外呼拨号器本身（交给外呼 CRM）</li>
+            <li>不做合同/回款财务系统</li>
+            <li>不做全自动社交账号群发</li>
+            <li>不替代公司 BI，只做销售作业闭环</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 用户 -->
+    <section class="section" id="users">
+      <div class="section-head">
+        <p class="eyebrow">02 · USERS &amp; ROLES</p>
+        <h2>用户与角色</h2>
+      </div>
+
+      <div class="persona-grid">
+        <article class="persona main">
+          <div class="persona-tag">主要用户</div>
+          <h3>ToB 外贸软件销售</h3>
+          <p class="persona-goal">目标：完成月度签单指标，提高有效通话与演示转化。</p>
+          <ul>
+            <li><strong>工作内容：</strong>清洗线索、外呼、约演示、线上演示、报价跟单</li>
+            <li><strong>高频动作：</strong>每天处理 50–300 条线索；每周 5–20 场演示</li>
+            <li><strong>核心诉求：</strong>少做表格，多打电话；演示更有针对性</li>
+            <li><strong>熟练度：</strong>会用 Excel / CRM，不愿学复杂系统</li>
+          </ul>
+        </article>
+        <article class="persona">
+          <div class="persona-tag secondary">次要用户</div>
+          <h3>销售主管 / 经理</h3>
+          <ul>
+            <li>配置公司清洗模板与权限</li>
+            <li>查看团队线索消化、演示、签单漏斗</li>
+            <li>抽查企调报告质量</li>
+          </ul>
+        </article>
+        <article class="persona">
+          <div class="persona-tag secondary">协同用户</div>
+          <h3>售前 / 产品 / 市场</h3>
+          <ul>
+            <li>提供行业案例、功能卖点、竞品对比资料</li>
+            <li>沉淀知识库，供 Agent 引用</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="day-flow">
+        <h3>销售的一天（产品介入点）</h3>
+        <div class="timeline">
+          <div class="t-item">
+            <span class="t-time">09:00</span>
+            <p><strong>领取/导入当日线索</strong> → Agent 自动清洗、评分，生成「今日优先 N 条」</p>
+          </div>
+          <div class="t-item">
+            <span class="t-time">09:30</span>
+            <p><strong>外呼拨打</strong> → 侧栏显示客户快照；接通后约腾讯会</p>
+          </div>
+          <div class="t-item">
+            <span class="t-time">11:00</span>
+            <p><strong>准备演示</strong> → 一键生成演示简报：背景、痛点、脚本、异议库</p>
+          </div>
+          <div class="t-item">
+            <span class="t-time">14:00</span>
+            <p><strong>远程演示</strong> → 按脚本演示；会后自动摘要待办</p>
+          </div>
+          <div class="t-item">
+            <span class="t-time">16:30</span>
+            <p><strong>跟进报价</strong> → 生成跟进邮件/微信话术，更新阶段</p>
+          </div>
+          <div class="t-item">
+            <span class="t-time">18:00</span>
+            <p><strong>收工复盘</strong> → 看板查看今日数据，明日任务自动排程</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 场景 -->
+    <section class="section" id="scenes">
+      <div class="section-head">
+        <p class="eyebrow">03 · BUSINESS SCENARIOS</p>
+        <h2>业务场景全景</h2>
+        <p class="section-desc">围绕两大主场景展开：数据清洗落库、演示辅助分析；并用跟进管理把线索推到签单。</p>
+      </div>
+
+      <div class="scene-map">
+        <div class="scene-col">
+          <h3>场景一 · 原始数据清洗</h3>
+          <ol>
+            <li>公司下发渠道资料（中国制造 / 阿里巴巴 / 企查查 / 其他）</li>
+            <li>销售上传 Excel/CSV 或粘贴数据</li>
+            <li>系统识别字段、去重、校验、补全标签</li>
+            <li>按公司模板生成标准表</li>
+            <li>导出或直写外呼 CRM，开始拨打</li>
+          </ol>
+        </div>
+        <div class="scene-col">
+          <h3>场景二 · 演示辅助分析</h3>
+          <ol>
+            <li>从线索列表选择「准备演示」</li>
+            <li>系统调研官网、B2B 平台、海外社媒</li>
+            <li>输出行业/产品画像与外贸开发方式判断</li>
+            <li>生成演示侧重点、脚本、案例与异议应对</li>
+            <li>演示后回收纪要与跟单任务</li>
+          </ol>
+        </div>
+        <div class="scene-col">
+          <h3>场景三 · 跟进签单（支撑）</h3>
+          <ol>
+            <li>通话/演示结果一键记录</li>
+            <li>异议、预算、竞品、决策人结构化入库</li>
+            <li>按阶段生成下一步动作与提醒</li>
+            <li>主管看板监控漏斗与丢单原因</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 功能一 -->
+    <section class="section" id="module-1">
+      <div class="section-head">
+        <p class="eyebrow">04 · FEATURE MODULE 1</p>
+        <h2>功能一 · 原始数据清洗</h2>
+        <p class="section-desc">把多渠道、半结构化的企业客户资料，变成可直接导入外呼 CRM 的公司标准表。</p>
+      </div>
+
+      <div class="module-hero">
+        <div>
+          <h3>输入 → 处理 → 输出</h3>
+          <p>支持批量文件、粘贴文本、历史批次复用。清洗过程可解释、可人工修正、可一键重跑。</p>
+        </div>
+        <div class="io-flow">
+          <div class="io-box">
+            <span>INPUT</span>
+            <strong>Excel / CSV / 粘贴文本</strong>
+            <small>中国制造、阿里巴巴、企查查、自采名单</small>
+          </div>
+          <div class="io-arrow">→</div>
+          <div class="io-box core">
+            <span>PROCESS</span>
+            <strong>识别 · 去重 · 校验 · 补全</strong>
+            <small>规则引擎 + LLM 语义理解</small>
+          </div>
+          <div class="io-arrow">→</div>
+          <div class="io-box">
+            <span>OUTPUT</span>
+            <strong>公司模板表 + CRM 导入包</strong>
+            <small>失败行报告 · 清洗日志</small>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">4.1 数据源与导入</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>来源渠道</th>
+              <th>典型字段</th>
+              <th>导入方式</th>
+              <th>清洗重点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>中国制造网</td>
+              <td>公司名、联系人、电话、主营、网址</td>
+              <td>导出表上传</td>
+              <td>联系人职位识别、座机/手机分流</td>
+            </tr>
+            <tr>
+              <td>阿里巴巴 / 国际站</td>
+              <td>店铺名、主营产品、国家、联系方式</td>
+              <td>导出表 / 粘贴</td>
+              <td>店铺与公司名对齐、重复店铺去重</td>
+            </tr>
+            <tr>
+              <td>企查查 / 工商数据</td>
+              <td>公司全称、法人、成立日期、地址、官网</td>
+              <td>导出表上传</td>
+              <td>统一社会信用代码、经营状态过滤</td>
+            </tr>
+            <tr>
+              <td>展会 / 自采 / 其他</td>
+              <td>名片信息、表格、手工录入</td>
+              <td>Excel / 粘贴</td>
+              <td>格式修复、缺失补全</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-h">4.2 清洗流水线（规则 + AI）</h3>
+      <div class="pipeline">
+        <div class="pipe-step">
+          <span class="pipe-no">1</span>
+          <h4>结构识别</h4>
+          <p>自动识别表头与列语义（公司名/联系人/电话/网址/地区/行业等），支持人工确认映射。</p>
+        </div>
+        <div class="pipe-step">
+          <span class="pipe-no">2</span>
+          <h4>标准化</h4>
+          <p>去空格/全半角/常见错别字；电话去分隔符、+86 归一；网址补协议、去跟踪参数。</p>
+        </div>
+        <div class="pipe-step">
+          <span class="pipe-no">3</span>
+          <h4>去重合并</h4>
+          <p>按手机号 / 公司名+地区 / 域名三级去重；重复记录合并保留最完整字段，保留来源追溯。</p>
+        </div>
+        <div class="pipe-step">
+          <span class="pipe-no">4</span>
+          <h4>有效性校验</h4>
+          <p>号码格式与号段校验、疑似空号/停机标记、邮箱格式、经营状态、黑名单过滤。</p>
+        </div>
+        <div class="pipe-step">
+          <span class="pipe-no">5</span>
+          <h4>智能补全</h4>
+          <p>LLM 补全行业、主营产品、企业规模、外贸属性（是否出口、是否做平台）、决策人猜测。</p>
+        </div>
+        <div class="pipe-step">
+          <span class="pipe-no">6</span>
+          <h4>评分排序</h4>
+          <p>按 ICP 匹配度输出优先级分，生成「今日建议拨打」队列。</p>
+        </div>
+        <div class="pipe-step">
+          <span class="pipe-no">7</span>
+          <h4>模板导出</h4>
+          <p>映射到公司模板列，生成 Excel/CSV；可 API/文件写入外呼 CRM。</p>
+        </div>
+      </div>
+
+      <h3 class="sub-h">4.3 公司模板字段（可配置）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>字段组</th>
+              <th>字段</th>
+              <th>必填</th>
+              <th>规则说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="4">企业信息</td>
+              <td>公司名称</td><td>是</td><td>去后缀噪音，保留完整工商/常用名</td>
+            </tr>
+            <tr>
+              <td>统一社会信用代码</td><td>否</td><td>企查查来源优先</td>
+            </tr>
+            <tr>
+              <td>所属地区（省/市）</td><td>是</td><td>行政区划标准化</td>
+            </tr>
+            <tr>
+              <td>官网</td><td>否</td><td>自动补 https、去 www 差异用于去重</td>
+            </tr>
+            <tr>
+              <td rowspan="3">联系人</td>
+              <td>姓名</td><td>是</td><td>去「经理/总」等职位混入</td>
+            </tr>
+            <tr>
+              <td>职位</td><td>否</td><td>归一到标准职位词典</td>
+            </tr>
+            <tr>
+              <td>手机 / 座机</td><td>手机是</td><td>校验号段；座机单独列</td>
+            </tr>
+            <tr>
+              <td rowspan="3">业务标签</td>
+              <td>行业 / 主营产品</td><td>是</td><td>标准行业词 + 自由文本</td>
+            </tr>
+            <tr>
+              <td>外贸属性</td><td>否</td><td>是否出口/平台卖家/工厂/贸易公司</td>
+            </tr>
+            <tr>
+              <td>线索来源渠道</td><td>是</td><td>枚举：制造/阿里/企查/其他</td>
+            </tr>
+            <tr>
+              <td rowspan="3">作业字段</td>
+              <td>优先级分</td><td>是</td><td>系统计算 0–100</td>
+            </tr>
+            <tr>
+              <td>负责人 / 批次号</td><td>是</td><td>分配与回溯</td>
+            </tr>
+            <tr>
+              <td>备注</td><td>否</td><td>清洗提示 / 人工补充</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-h">4.4 清洗规则明细</h3>
+      <div class="rule-grid">
+        <div class="rule">
+          <h4>去重</h4>
+          <p>精确：手机号、官网域名、信用代码。<br />模糊：公司名相似度 ≥ 0.92 且同省市 → 进入「疑似重复」人工确认队列。</p>
+        </div>
+        <div class="rule">
+          <h4>手机号</h4>
+          <p>去除空格/短横；11 位大陆号；识别 +852/+1 等海外号并标记；重复号合并到同一联系人池。</p>
+        </div>
+        <div class="rule">
+          <h4>空值策略</h4>
+          <p>必填缺失 → 标记待补全，不丢弃；补全失败仍可导出，但优先级分降低并打「字段不全」标签。</p>
+        </div>
+        <div class="rule">
+          <h4>异常行</h4>
+          <p>纯备注行、合计行、非企业条目（如「样例」）过滤；表头重复行合并；错位数据进人工修正队列。</p>
+        </div>
+        <div class="rule">
+          <h4>黑名单</h4>
+          <p>支持导入公司/号码黑名单；已离职、投诉、明确拒绝客户不再进入当日拨打队列。</p>
+        </div>
+        <div class="rule">
+          <h4>可追溯</h4>
+          <p>每条记录保留：原始值、清洗后值、规则命中列表、操作人、时间、来源文件。</p>
+        </div>
+      </div>
+
+      <h3 class="sub-h">4.5 输出与 CRM 写入</h3>
+      <div class="out-cards">
+        <article>
+          <h4>标准表导出</h4>
+          <p>一键下载公司模板 Excel/CSV；支持「仅导出可拨打」「全部」「异常待修」三种范围。</p>
+        </article>
+        <article>
+          <h4>外呼 CRM 导入</h4>
+          <p>文件直传或 API 写入；字段映射可保存为方案；失败行回传错误原因（如号码格式）。</p>
+        </article>
+        <article>
+          <h4>批次报告</h4>
+          <p>本次清洗：总条数、通过、去重、无效、待补全、耗时、操作人；可导出给主管。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5 功能二 -->
+    <section class="section" id="module-2">
+      <div class="section-head">
+        <p class="eyebrow">05 · FEATURE MODULE 2</p>
+        <h2>功能二 · 演示辅助分析</h2>
+        <p class="section-desc">演示前自动完成客户背景调查，输出「他是谁、缺什么、我讲什么、怎么讲」。</p>
+      </div>
+
+      <div class="brief-preview">
+        <div class="brief-title">
+          <h3>演示简报 · 标准输出结构</h3>
+          <p>每次生成约 1–2 页，3 分钟能读完，可复制进腾讯会聊天或打印。</p>
+        </div>
+        <div class="brief-body">
+          <div class="brief-block">
+            <h4>1. 客户快照</h4>
+            <ul>
+              <li>公司基本信息（名称、地区、类型、规模猜测）</li>
+              <li>主营产品与目标市场</li>
+              <li>外贸现状：平台、网站、社媒、疑似团队规模</li>
+            </ul>
+          </div>
+          <div class="brief-block">
+            <h4>2. 信息证据</h4>
+            <ul>
+              <li>官网关键页面摘要</li>
+              <li>中国制造 / 阿里国际站店铺摘要</li>
+              <li>LinkedIn / Facebook / YouTube / Instagram 是否存在及活跃度</li>
+            </ul>
+          </div>
+          <div class="brief-block">
+            <h4>3. 痛点假设</h4>
+            <ul>
+              <li>按行业推断的 3 个高概率痛点</li>
+              <li>与我方可售功能模块的映射</li>
+            </ul>
+          </div>
+          <div class="brief-block">
+            <h4>4. 开发方式判断</h4>
+            <ul>
+              <li>更适合：平台运营 / 独立站 / 社媒 / 展会 / 主动开发</li>
+              <li>演示中应强调对应产品能力</li>
+            </ul>
+          </div>
+          <div class="brief-block">
+            <h4>5. 演示脚本建议</h4>
+            <ul>
+              <li>开场 2 分钟：行业共性挑战 + 同行案例</li>
+              <li>核心 20 分钟：3 个优先模块演示顺序</li>
+              <li>收尾 5 分钟：报价试探 + 约下一步</li>
+            </ul>
+          </div>
+          <div class="brief-block">
+            <h4>6. 风险与异议</h4>
+            <ul>
+              <li>常见异议 3–5 条 + 应对话术</li>
+              <li>可能竞品与差异化点</li>
+              <li>决策链猜测（老板/外贸经理/业务员）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-h">5.1 调研数据源</h3>
+      <div class="source-grid">
+        <div>
+          <h4>官网</h4>
+          <p>首页、关于我们、产品页、联系方式；判断是否真做外贸、产品线、品牌调性。</p>
+        </div>
+        <div>
+          <h4>中国制造网</h4>
+          <p>店铺年限、主营、是否付费会员、产品数量；判断平台投入程度。</p>
+        </div>
+        <div>
+          <h4>阿里巴巴 / 国际站</h4>
+          <p>店铺信息、产品、年限、认证；与官网信息交叉验证。</p>
+        </div>
+        <div>
+          <h4>企查查 / 工商</h4>
+          <p>成立时间、人员规模、经营范围、经营状态、知识产权。</p>
+        </div>
+        <div>
+          <h4>海外社媒</h4>
+          <p>LinkedIn 公司页、Facebook、YouTube、Instagram：有无、粉丝、更新频率、内容类型。</p>
+        </div>
+        <div>
+          <h4>销售历史（内部）</h4>
+          <p>过往通话/演示记录、竞品提及、报价、丢单原因；避免重复问已知信息。</p>
+        </div>
+      </div>
+
+      <h3 class="sub-h">5.2 分析维度与生成逻辑</h3>
+      <div class="logic-flow">
+        <div class="logic-item">
+          <strong>行业识别</strong>
+          <span>产品词 → 标准行业分类 → 行业模板</span>
+        </div>
+        <div class="logic-item">
+          <strong>外贸成熟度</strong>
+          <span>官网 + 平台 + 社媒 + 出口痕迹 → 低/中/高</span>
+        </div>
+        <div class="logic-item">
+          <strong>开发方式匹配</strong>
+          <span>成熟度 × 行业 × 预算信号 → 策略建议</span>
+        </div>
+        <div class="logic-item">
+          <strong>演示路径</strong>
+          <span>策略 → 映射产品模块 → 排序 → 脚本</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>外贸成熟度</th>
+              <th>典型信号</th>
+              <th>演示侧重点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>起步期</td>
+              <td>无独立站/弱官网，未入驻或刚入驻平台</td>
+              <td>讲清楚数字化外贸路径、基础获客、线索管理</td>
+            </tr>
+            <tr>
+              <td>成长期</td>
+              <td>有平台店铺或独立站，询盘不稳定</td>
+              <td>询盘转化、客户跟进、多渠道协同、数据分析</td>
+            </tr>
+            <tr>
+              <td>成熟期</td>
+              <td>多平台 + 独立站 + 社媒，团队多人</td>
+              <td>团队协作、流程自动化、管理报表、与现有系统集成</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-h">5.3 演示辅助能力明细</h3>
+      <div class="feature-grid">
+        <article class="f-card">
+          <h4>一键企调</h4>
+          <p>输入公司名/官网/线索，3 分钟内出简报；支持重新抓取与人工补充。</p>
+        </article>
+        <article class="f-card">
+          <h4>证据可回溯</h4>
+          <p>简报结论附来源链接与摘录，销售可自行核对，避免 AI 幻觉误导。</p>
+        </article>
+        <article class="f-card">
+          <h4>演示脚本</h4>
+          <p>按时间轴输出讲稿要点、可截图的功能点、要提问的需求探询问题。</p>
+        </article>
+        <article class="f-card">
+          <h4>异议应对库</h4>
+          <p>价格、已有系统、没时间、效果疑虑等标准异议 + 行业化变体。</p>
+        </article>
+        <article class="f-card">
+          <h4>案例推荐</h4>
+          <p>从知识库匹配同行业/同规模客户案例，生成 30 秒案例话术。</p>
+        </article>
+        <article class="f-card">
+          <h4>会后摘要</h4>
+          <p>粘贴会议纪要 → 抽取需求、承诺、下一步、负责人、截止日。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6 流程 -->
+    <section class="section" id="flows">
+      <div class="section-head">
+        <p class="eyebrow">06 · USER FLOWS</p>
+        <h2>用户流程</h2>
+      </div>
+
+      <div class="flow-block">
+        <h3>流程 A · 线索清洗到外呼</h3>
+        <div class="steps">
+          <div class="step">登录工作台</div>
+          <div class="step-arrow">→</div>
+          <div class="step">新建清洗批次 / 上传文件</div>
+          <div class="step-arrow">→</div>
+          <div class="step">确认字段映射</div>
+          <div class="step-arrow">→</div>
+          <div class="step">执行清洗（预览差异）</div>
+          <div class="step-arrow">→</div>
+          <div class="step">处理异常/待补全</div>
+          <div class="step-arrow">→</div>
+          <div class="step">导出模板 / 写入 CRM</div>
+          <div class="step-arrow">→</div>
+          <div class="step">生成今日拨打队列</div>
+        </div>
+      </div>
+
+      <div class="flow-block">
+        <h3>流程 B · 演示准备到跟进</h3>
+        <div class="steps">
+          <div class="step">线索详情</div>
+          <div class="step-arrow">→</div>
+          <div class="step">一键企调 / 生成简报</div>
+          <div class="step-arrow">→</div>
+          <div class="step">人工校对补充</div>
+          <div class="step-arrow">→</div>
+          <div class="step">创建腾讯会议</div>
+          <div class="step-arrow">→</div>
+          <div class="step">按脚本演示</div>
+          <div class="step-arrow">→</div>
+          <div class="step">记录结果与纪要</div>
+          <div class="step-arrow">→</div>
+          <div class="step">生成跟进任务</div>
+        </div>
+      </div>
+
+      <div class="flow-block">
+        <h3>流程 C · 异常处理</h3>
+        <div class="steps">
+          <div class="step">清洗报告标记异常行</div>
+          <div class="step-arrow">→</div>
+          <div class="step">进入修正队列</div>
+          <div class="step-arrow">→</div>
+          <div class="step">AI 建议 + 人工确认</div>
+          <div class="step-arrow">→</div>
+          <div class="step">重跑子集</div>
+          <div class="step-arrow">→</div>
+          <div class="step">并入主批次导出</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 页面 -->
+    <section class="section" id="pages">
+      <div class="section-head">
+        <p class="eyebrow">07 · INFORMATION ARCHITECTURE</p>
+        <h2>页面结构（IA）</h2>
+      </div>
+
+      <div class="ia-grid">
+        <article>
+          <h3>01 工作台首页</h3>
+          <ul>
+            <li>今日待拨打 / 待演示 / 待跟进</li>
+            <li>本周漏斗（线索→接通→预约→演示→商机→签单）</li>
+            <li>最近批次与简报快捷入口</li>
+          </ul>
+        </article>
+        <article>
+          <h3>02 线索清洗</h3>
+          <ul>
+            <li>批次列表 / 新建批次</li>
+            <li>字段映射、清洗预览、异常队列</li>
+            <li>导出与 CRM 写入</li>
+          </ul>
+        </article>
+        <article>
+          <h3>03 线索库</h3>
+          <ul>
+            <li>多维筛选（来源、评分、地区、行业、状态）</li>
+            <li>详情页：基本信息、清洗轨迹、互动历史</li>
+            <li>操作：企调、建会、记录、加入黑名单</li>
+          </ul>
+        </article>
+        <article>
+          <h3>04 演示中心</h3>
+          <ul>
+            <li>演示日历与准备清单</li>
+            <li>简报生成与版本对比</li>
+            <li>脚本、案例、异议库</li>
+          </ul>
+        </article>
+        <article>
+          <h3>05 跟进管理</h3>
+          <ul>
+            <li>按阶段看板（可拖拽）</li>
+            <li>任务提醒、下次联系时间</li>
+            <li>丢单原因登记</li>
+          </ul>
+        </article>
+        <article>
+          <h3>06 配置中心</h3>
+          <ul>
+            <li>公司模板字段管理</li>
+            <li>CRM 映射方案</li>
+            <li>黑名单、行业词库、话术知识库</li>
+            <li>成员与权限</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 8 数据 -->
+    <section class="section" id="data">
+      <div class="section-head">
+        <p class="eyebrow">08 · DATA MODEL</p>
+        <h2>核心数据模型</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>实体</th>
+              <th>关键字段</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lead（线索）</td>
+              <td>company, contact, phone, mobile, website, region, industry, source, score, status</td>
+              <td>清洗后主实体，支撑拨打与演示</td>
+            </tr>
+            <tr>
+              <td>CleanBatch（清洗批次）</td>
+              <td>id, source_file, mapping_id, stats, operator, created_at</td>
+              <td>一次导入清洗的完整追溯</td>
+            </tr>
+            <tr>
+              <td>CleanRecord（清洗记录）</td>
+              <td>raw_payload, normalized, rule_hits, issues</td>
+              <td>行级原始值与规则命中</td>
+            </tr>
+            <tr>
+              <td>CompanyBrief（企调简报）</td>
+              <td>lead_id, snapshot, evidence, pain_points, script, risks, version</td>
+              <td>演示前分析产物，可多版本</td>
+            </tr>
+            <tr>
+              <td>Interaction（互动）</td>
+              <td>type(call/meeting/email), result, notes, next_action</td>
+              <td>通话/演示/跟进记录</td>
+            </tr>
+            <tr>
+              <td>Deal（商机）</td>
+              <td>stage, amount, competitor, close_prob, lost_reason</td>
+              <td>从演示预约进入签单管理</td>
+            </tr>
+            <tr>
+              <td>Template / Mapping</td>
+              <td>columns, required, crm_field, company_id</td>
+              <td>公司模板与 CRM 字段方案</td>
+            </tr>
+            <tr>
+              <td>KnowledgeDoc</td>
+              <td>type(case/script/objection), industry, content</td>
+              <td>演示与话术知识库</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 9 业务规则 -->
+    <section class="section" id="rules">
+      <div class="section-head">
+        <p class="eyebrow">09 · BUSINESS RULES</p>
+        <h2>关键业务规则</h2>
+      </div>
+      <div class="rule-grid">
+        <div class="rule">
+          <h4>优先级分模型</h4>
+          <p>行业匹配 30 + 外贸成熟度 25 + 信息完整度 15 + 可达性（手机有效）20 + 历史互动 10。分档：A(≥80) / B(60–79) / C(&lt;60)。</p>
+        </div>
+        <div class="rule">
+          <h4>当日队列</h4>
+          <p>默认按优先级分排序；同分按号码可达性与来源新鲜度；销售可手动置顶。</p>
+        </div>
+        <div class="rule">
+          <h4>简报生成约束</h4>
+          <p>必须引用至少 1 条外部证据；无官网/平台信息时输出「信息不足」而不是编造；允许人工锁定结论。</p>
+        </div>
+        <div class="rule">
+          <h4>CRM 写入</h4>
+          <p>同一手机号 30 天内不重复创建；写入失败保留本地并支持重试；敏感字段脱敏日志。</p>
+        </div>
+        <div class="rule">
+          <h4>权限</h4>
+          <p>销售仅见本人及团队内分配线索；主管可见全团队；模板配置仅管理员。</p>
+        </div>
+        <div class="rule">
+          <h4>数据留存</h4>
+          <p>原始上传文件默认保留 180 天；可配置删除；导出文件水印记录操作人。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 集成 -->
+    <section class="section" id="integration">
+      <div class="section-head">
+        <p class="eyebrow">10 · INTEGRATIONS</p>
+        <h2>系统集成</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>系统</th>
+              <th>集成方式</th>
+              <th>用途</th>
+              <th>优先级</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>外呼 CRM</td>
+              <td>文件导入 / REST API</td>
+              <td>清洗结果下发、结果回写</td>
+              <td>P0</td>
+            </tr>
+            <tr>
+              <td>企业微信 / 飞书</td>
+              <td>Bot / 应用</td>
+              <td>提醒、简报推送、异常告警</td>
+              <td>P0</td>
+            </tr>
+            <tr>
+              <td>腾讯会议</td>
+              <td>API 创建会议</td>
+              <td>一键约会，日程同步</td>
+              <td>P1</td>
+            </tr>
+            <tr>
+              <td>企查查等数据源</td>
+              <td>官方 API / 导出表</td>
+              <td>工商补全</td>
+              <td>P1</td>
+            </tr>
+            <tr>
+              <td>官网 / 网页调研</td>
+              <td>抓取服务（受控）</td>
+              <td>企调证据采集</td>
+              <td>P0</td>
+            </tr>
+            <tr>
+              <td>对象存储 / 企业网盘</td>
+              <td>S3 / 本地</td>
+              <td>上传文件与导出件</td>
+              <td>P0</td>
+            </tr>
+            <tr>
+              <td>SSO</td>
+              <td>OIDC / 企微扫码</td>
+              <td>统一登录</td>
+              <td>P1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 11 指标 -->
+    <section class="section" id="metrics">
+      <div class="section-head">
+        <p class="eyebrow">11 · METRICS &amp; ACCEPTANCE</p>
+        <h2>成功指标与 MVP 验收</h2>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi"><strong>≥70%</strong><span>清洗耗时下降</span></div>
+        <div class="kpi"><strong>≥95%</strong><span>模板字段正确率</span></div>
+        <div class="kpi"><strong>≤3 min</strong><span>单客户简报生成</span></div>
+        <div class="kpi"><strong>≥80%</strong><span>销售认为简报「有用」</span></div>
+        <div class="kpi"><strong>↑</strong><span>演示预约率 / 人均产出</span></div>
+        <div class="kpi"><strong>100%</strong><span>清洗结果可追溯</span></div>
+      </div>
+
+      <div class="accept">
+        <h3>MVP 验收清单</h3>
+        <div class="accept-grid">
+          <label><input type="checkbox" /> 支持上传至少 3 种来源表格并自动识别字段</label>
+          <label><input type="checkbox" /> 去重、号码校验、模板导出一次成功</label>
+          <label><input type="checkbox" /> 清洗批次报告完整，异常行可修正重跑</label>
+          <label><input type="checkbox" /> 外呼 CRM 导入文件符合其模板要求</label>
+          <label><input type="checkbox" /> 输入公司名/官网可生成含证据链接的演示简报</label>
+          <label><input type="checkbox" /> 简报含痛点、演示脚本、异议应对</label>
+          <label><input type="checkbox" /> 线索详情可见清洗轨迹与企调报告</label>
+          <label><input type="checkbox" /> 基础权限：销售/主管隔离</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 技术 -->
+    <section class="section" id="tech">
+      <div class="section-head">
+        <p class="eyebrow">12 · TECH STACK</p>
+        <h2>技术方案</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>层</th><th>选型</th><th>要点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>前端</td><td>React 18 + TS + Vite + Ant Design 5</td><td>表格/上传/看板组件完善，迭代快</td></tr>
+            <tr><td>状态/请求</td><td>Zustand + TanStack Query</td><td>服务端状态缓存，批量操作友好</td></tr>
+            <tr><td>后端</td><td>Node.js NestJS（主）或 FastAPI（分析）</td><td>API、清洗流水线、任务编排</td></tr>
+            <tr><td>Agent</td><td>工具调用 + 流水线（LangGraph 可选）</td><td>字段理解、补全、简报生成可复用工具</td></tr>
+            <tr><td>LLM</td><td>多模型网关（DeepSeek / GPT / Claude）</td><td>清洗用轻量模型，简报用旗舰模型</td></tr>
+            <tr><td>存储</td><td>PostgreSQL + Redis + 对象存储</td><td>主数据、缓存队列、文件</td></tr>
+            <tr><td>任务</td><td>BullMQ</td><td>批量清洗、异步抓取、重试</td></tr>
+            <tr><td>抓取</td><td>Playwright + 站点适配器</td><td>受控频率，证据摘录而非全文灌入</td></tr>
+            <tr><td>文件</td><td>SheetJS / openpyxl</td><td>模板读写、大文件流式</td></tr>
+            <tr><td>可观测</td><td>Sentry + 日志审计</td><td>清洗规则命中与简报版本可查</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="arch">
+        <div class="arch-row"><div class="arch-box">Web 工作台（清洗 / 线索 / 演示 / 跟进）</div></div>
+        <div class="arch-down">↓</div>
+        <div class="arch-row"><div class="arch-box wide">API · 鉴权 · 审计 · 模板配置</div></div>
+        <div class="arch-down">↓</div>
+        <div class="arch-row three">
+          <div class="arch-box">清洗流水线</div>
+          <div class="arch-box">企调 / 简报 Agent</div>
+          <div class="arch-box">跟进与看板</div>
+        </div>
+        <div class="arch-down">↓</div>
+        <div class="arch-row three">
+          <div class="arch-box muted">LLM 网关</div>
+          <div class="arch-box muted">抓取 / 企查 API</div>
+          <div class="arch-box muted">外呼 CRM / 企微</div>
+        </div>
+        <div class="arch-down">↓</div>
+        <div class="arch-row"><div class="arch-box muted wide">PostgreSQL · Redis · 对象存储 · 任务队列</div></div>
+      </div>
+    </section>
+
+    <!-- 13 规划 -->
+    <section class="section" id="plan">
+      <div class="section-head">
+        <p class="eyebrow">13 · RELEASE PLAN</p>
+        <h2>版本规划</h2>
+      </div>
+      <div class="release">
+        <article class="rel">
+          <div class="rel-tag">V0.1 · 0–4 周</div>
+          <h3>MVP</h3>
+          <ul>
+            <li>上传清洗 + 字段映射 + 去重校验</li>
+            <li>公司模板导出</li>
+            <li>官网/链接一键简报</li>
+            <li>线索库 + 批次报告</li>
+            <li>登录与基础权限</li>
+          </ul>
+        </article>
+        <article class="rel">
+          <div class="rel-tag">V0.2 · 5–8 周</div>
+          <h3>闭环增强</h3>
+          <ul>
+            <li>外呼 CRM 直写/回写</li>
+            <li>演示脚本与异议库</li>
+            <li>会议纪要 → 跟进任务</li>
+            <li>优先级评分与今日队列</li>
+            <li>企微提醒</li>
+          </ul>
+        </article>
+        <article class="rel">
+          <div class="rel-tag">V0.3 · 9–12 周</div>
+          <h3>规模化</h3>
+          <ul>
+            <li>腾讯会议 API、SSO</li>
+            <li>团队看板与丢单分析</li>
+            <li>知识库 RAG / 案例推荐</li>
+            <li>签单预测与预警</li>
+            <li>私有化部署选项</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 14 风险 -->
+    <section class="section" id="risks">
+      <div class="section-head">
+        <p class="eyebrow">14 · RISKS</p>
+        <h2>风险与对策</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>风险</th><th>影响</th><th>对策</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>各渠道导出格式频繁变化</td>
+              <td>清洗失败率上升</td>
+              <td>映射方案可配置 + 样本自动推荐映射 + 人工确认</td>
+            </tr>
+            <tr>
+              <td>LinkedIn/FB 等抓取不稳或不合规</td>
+              <td>社媒盘点缺失</td>
+              <td>支持手动粘贴链接；优先公开信息；合规审查</td>
+            </tr>
+            <tr>
+              <td>企调信息不足导致幻觉</td>
+              <td>销售不信任简报</td>
+              <td>强制证据引用；低置信度显式提示；人工锁定</td>
+            </tr>
+            <tr>
+              <td>外呼 CRM 接口不统一</td>
+              <td>集成成本高</td>
+              <td>MVP 先做文件标准表；API 适配层按客户配置</td>
+            </tr>
+            <tr>
+              <td>销售抵触新工具</td>
+              <td>使用率低</td>
+              <td>首页直接服务「今日拨打/今日演示」；减少跳转</td>
+            </tr>
+            <tr>
+              <td>企业客户数据隐私</td>
+              <td>合规风险</td>
+              <td>权限隔离、脱敏日志、留存期配置、私有化选项</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="final">
+        <h3>下一步建议</h3>
+        <p>
+          1）确认公司<strong>清洗模板 Excel</strong> 与<strong>外呼 CRM 导入格式</strong>样例；<br />
+          2）选 1 个行业（如五金/电子/服装）做简报试产；<br />
+          3）按 V0.1 范围排期开发，2 周出清洗 Demo，4 周出可演示 MVP。
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>TradeS Agent · 外贸客户资料清洗整理 · 产品完整说明书</p>
+      <p class="muted">可直接用于需求评审、开发排期与销售培训</p>
+    </footer>
+  </main>
+
+  <script src="agent-a.js"></script>
+</body>
+</html>

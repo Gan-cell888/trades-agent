@@ -1,0 +1,8 @@
+﻿# secrets & local
+app/llm_config.json
+app/qa_sessions.json
+__pycache__/
+*.pyc
+_test_export.xlsx
+.idea/
+.vscode/

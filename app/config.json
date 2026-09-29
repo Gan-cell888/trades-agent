@@ -1,0 +1,40 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8787,
+    "auto_open_browser": true
+  },
+  "llm": {
+    "provider": "openai",
+    "base_url": "https://api.deepseek.com/v1",
+    "api_key": "",
+    "model": "deepseek-chat",
+    "temperature": 0.3,
+    "max_tokens": 2048
+  },
+  "agent": {
+    "system_prompt": "你是公司内部数据清洗与线索整理助手。严格按工作记录中的手机号规则、去重规则与某公司模板回答和指导。不确定写「待核实」，禁止编造清洗结果数字。",
+    "history_rounds": 12
+  },
+  "cleaning": {
+    "mobile_pattern": "^1\\d{10}$",
+    "strip_prefixes": ["+86", "86", "0086"],
+    "drop_intl_prefixes": ["+853", "+886", "+852", "+81", "+82"],
+    "drop_landline": true,
+    "split_separators": ["、", "；", ";", "/", ",", " ", "　"],
+    "dedupe_key": "公司名称",
+    "drop_empty_mobile": true,
+    "mobile_slots": ["常用电话", "备用电话1", "备用电话2"],
+    "template_columns": [
+      "公司名称", "部门", "公司网址", "网站网址", "姓名", "岗位",
+      "常用电话", "备用电话1", "备用电话2", "性别", "生日",
+      "微信", "钉钉", "邮箱", "QQ", "旺旺", "个人传真", "淘到客户时间"
+    ],
+    "output_dir": "",
+    "split_rows": 1500
+  },
+  "ui": {
+    "title": "TradeS Agent · 数据清洗助手",
+    "placeholder": "询问清洗规则、字段映射，或上传 Excel 开始清洗…"
+  }
+}
